@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, useTheme } from '@mui/material';
+import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from '@mui/material';
 
 
 interface IFerramentasDeDetalheProps {
@@ -7,7 +7,13 @@ interface IFerramentasDeDetalheProps {
   mostrarBotaoVoltar?: boolean
   mostrarBotaoApagar?: boolean
   mostrarBotaoSalvar?: boolean
-  mostrarBotaoSalverEVoltar?: boolean
+  mostrarBotaoSalvarEVoltar?: boolean
+
+  mostrarBotaoNovoCarregando?: boolean
+  mostrarBotaoVoltarCarregando?: boolean
+  mostrarBotaoApagarCarregando?: boolean
+  mostrarBotaoSalvarCarregando?: boolean
+  mostrarBotaoSalvarEVoltarCarregando?: boolean
 
   aoClicarEmNovo?: () => void
   aoClicarEmVoltar?: () => void
@@ -24,7 +30,13 @@ export const FerramentasDeDetalhe = ({
   mostrarBotaoVoltar = true,
   mostrarBotaoApagar = true,
   mostrarBotaoSalvar = true,
-  mostrarBotaoSalverEVoltar = false,
+  mostrarBotaoSalvarEVoltar = false,
+
+  mostrarBotaoNovoCarregando = false,
+  mostrarBotaoVoltarCarregando = false,
+  mostrarBotaoApagarCarregando = true,
+  mostrarBotaoSalvarCarregando = false,
+  mostrarBotaoSalvarEVoltarCarregando = false,
 
   aoClicarEmNovo,
   aoClicarEmVoltar,
@@ -47,25 +59,33 @@ export const FerramentasDeDetalhe = ({
       gap={1}
       alignItems='center'
     >
-      {mostrarBotaoSalvar && (<Button
-        color='primary'
-        variant='contained'
-        disableElevation
-        startIcon={<Icon>save</Icon>}
-        onClick={aoClicarEmSalvar}
-      >
-        Salvar
-      </Button>)}
-      {mostrarBotaoSalverEVoltar && (<Button
-        color='primary'
-        variant='outlined'
-        disableElevation
-        startIcon={<Icon>save</Icon>}
-        onClick={aoClicarEmSalvarEVoltar}
-      >
-        Salvar e Voltar
-      </Button>)}
-      {mostrarBotaoApagar && (<Button
+      {(mostrarBotaoSalvar && !mostrarBotaoSalvarCarregando) && (
+        <Button
+          color='primary'
+          variant='contained'
+          disableElevation
+          startIcon={<Icon>save</Icon>}
+          onClick={aoClicarEmSalvar}
+        >
+          Salvar
+        </Button>)}
+
+      {mostrarBotaoSalvarCarregando && (<Skeleton width={110} height={65} />)}
+
+      {(mostrarBotaoSalvarEVoltar && !mostrarBotaoSalvarEVoltarCarregando) && (
+        <Button
+          color='primary'
+          variant='outlined'
+          disableElevation
+          startIcon={<Icon>save</Icon>}
+          onClick={aoClicarEmSalvarEVoltar}
+        >
+          Salvar e Voltar
+        </Button>)}
+
+      {mostrarBotaoSalvarEVoltarCarregando && (<Skeleton width={110} height={65} />)}
+
+      {(mostrarBotaoApagar && !mostrarBotaoApagarCarregando) && (<Button
         color='primary'
         variant='outlined'
         disableElevation
@@ -74,7 +94,10 @@ export const FerramentasDeDetalhe = ({
       >
         Apagar
       </Button>)}
-      {mostrarBotaoNovo && (<Button
+
+      {mostrarBotaoApagarCarregando && (<Skeleton width={110} height={65} />)}
+
+      {(mostrarBotaoNovo && !mostrarBotaoNovoCarregando) && (<Button
         color='primary'
         variant='outlined'
         disableElevation
@@ -84,9 +107,11 @@ export const FerramentasDeDetalhe = ({
         {textoBotaoNovo}
       </Button>)}
 
+      {mostrarBotaoNovoCarregando && (<Skeleton width={110} height={65} />)}
+
       <Divider variant='middle' orientation='vertical' />
 
-      {mostrarBotaoVoltar && (<Button
+      {(mostrarBotaoVoltar && !mostrarBotaoVoltarCarregando) && (<Button
         color='primary'
         variant='outlined'
         disableElevation
@@ -95,6 +120,9 @@ export const FerramentasDeDetalhe = ({
       >
         Voltar
       </Button>)}
+
+      {mostrarBotaoVoltarCarregando && (<Skeleton width={110} height={65} />)}
+
     </Box>
   );
 };
