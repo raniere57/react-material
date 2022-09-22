@@ -1,7 +1,38 @@
 import { Box, Button, Divider, Icon, Paper, useTheme } from '@mui/material';
 
 
-export const FerramentasDeDetalhe = () => {
+interface IFerramentasDeDetalheProps {
+  textoBotaoNovo?: string
+  mostrarBotaoNovo?: boolean
+  mostrarBotaoVoltar?: boolean
+  mostrarBotaoApagar?: boolean
+  mostrarBotaoSalvar?: boolean
+  mostrarBotaoSalverEVoltar?: boolean
+
+  aoClicarEmNovo?: () => void
+  aoClicarEmVoltar?: () => void
+  aoClicarEmApagar?: () => void
+  aoClicarEmSalvar?: () => void
+  aoClicarEmSalvarEVoltar?: () => void
+}
+
+export const FerramentasDeDetalhe = ({
+
+  textoBotaoNovo = 'Novo',
+
+  mostrarBotaoNovo = true,
+  mostrarBotaoVoltar = true,
+  mostrarBotaoApagar = true,
+  mostrarBotaoSalvar = true,
+  mostrarBotaoSalverEVoltar = false,
+
+  aoClicarEmNovo,
+  aoClicarEmVoltar,
+  aoClicarEmApagar,
+  aoClicarEmSalvar,
+  aoClicarEmSalvarEVoltar
+
+}: IFerramentasDeDetalheProps) => {
 
   const theme = useTheme();
 
@@ -16,49 +47,54 @@ export const FerramentasDeDetalhe = () => {
       gap={1}
       alignItems='center'
     >
-      <Button
+      {mostrarBotaoSalvar && (<Button
         color='primary'
         variant='contained'
         disableElevation
         startIcon={<Icon>save</Icon>}
+        onClick={aoClicarEmSalvar}
       >
         Salvar
-      </Button>
-      <Button
+      </Button>)}
+      {mostrarBotaoSalverEVoltar && (<Button
         color='primary'
         variant='outlined'
         disableElevation
         startIcon={<Icon>save</Icon>}
+        onClick={aoClicarEmSalvarEVoltar}
       >
         Salvar e Voltar
-      </Button>
-      <Button
+      </Button>)}
+      {mostrarBotaoApagar && (<Button
         color='primary'
         variant='outlined'
         disableElevation
         startIcon={<Icon>delete</Icon>}
+        onClick={aoClicarEmApagar}
       >
         Apagar
-      </Button>
-      <Button
+      </Button>)}
+      {mostrarBotaoNovo && (<Button
         color='primary'
         variant='outlined'
         disableElevation
         startIcon={<Icon>add</Icon>}
+        onClick={aoClicarEmNovo}
       >
-        Novo
-      </Button>
+        {textoBotaoNovo}
+      </Button>)}
 
       <Divider variant='middle' orientation='vertical' />
 
-      <Button
+      {mostrarBotaoVoltar && (<Button
         color='primary'
         variant='outlined'
         disableElevation
         startIcon={<Icon>arrow_back</Icon>}
+        onClick={aoClicarEmVoltar}
       >
         Voltar
-      </Button>
+      </Button>)}
     </Box>
   );
 };
