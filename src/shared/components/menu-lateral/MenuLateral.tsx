@@ -1,6 +1,6 @@
 import { Avatar, Box, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
-import { useDrawerContext } from '../../contexts';
+import { useAppThemeContext, useDrawerContext } from '../../contexts';
 
 
 interface IMenuLateralProps {
@@ -20,7 +20,7 @@ const ListItemLink = ({ label, icon, to, onClick }: IListItemLinkProps) => {
 
   const resolvedPath = useResolvedPath(to);
 
-  const match = useMatch({path: resolvedPath.pathname, end: false});
+  const match = useMatch({ path: resolvedPath.pathname, end: false });
 
   const handleClick = () => {
     onClick();
@@ -45,6 +45,8 @@ export const MenuLateral = ({ children }: IMenuLateralProps) => {
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
+  const { toggleTheme } = useAppThemeContext();
+
   return (
     <>
       <Drawer open={isDrawerOpen} variant={smDown ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen} >
@@ -64,6 +66,16 @@ export const MenuLateral = ({ children }: IMenuLateralProps) => {
                   onClick={toggleDrawerOpen}
                 />
               ))}
+            </List>
+          </Box>
+          <Box>
+            <List component='nav' >
+              <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                  <Icon>dark_mode</Icon>
+                </ListItemIcon>
+                <ListItemText primary='Alternar Tema'/>
+              </ListItemButton>
             </List>
           </Box>
         </Box>
