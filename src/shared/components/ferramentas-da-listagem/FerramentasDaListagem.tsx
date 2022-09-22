@@ -50,6 +50,7 @@ export const FerramentasDaListagem = ({
       >
         {mostrarBotaoNovo && (
           <Button
+            color='primary'
             variant='contained'
             disableElevation
             onClick={aoClicarEmNovo}
