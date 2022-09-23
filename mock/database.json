@@ -2,8 +2,9 @@
   "pessoas": [
     {
       "id": 1,
-      "nome": "Juca",
-      "sobrenome": "Silva"
+      "email": "raaniere.r@gmail.com",
+      "nomeCompleto": "Raniere Rodrigues Gomes",
+      "cidadeId": 1
     }
   ]
 }
