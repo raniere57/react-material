@@ -1,18 +1,6 @@
 {
   "pessoas": [
     {
-      "id": 1,
-      "email": "raaniere.r@gmail.com",
-      "nomeCompleto": "Raniere Rodrigues Gomes",
-      "cidadeId": 1
-    },
-    {
-      "id": 2,
-      "email": "jose.r@gmail.com",
-      "nomeCompleto": "jose Rodrigues Gomes",
-      "cidadeId": 1
-    },
-    {
       "id": 3,
       "email": "maria.r@gmail.com",
       "nomeCompleto": "maria Rodrigues Gomes",
